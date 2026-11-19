@@ -20,7 +20,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="ໂປຣແກຣມເງິນເດືອນ HR ພາສາລາວ · ສະແກນໜ້າລົງເວລາ">
 <meta name="twitter:image" content="https://pernscmt.github.io/seafog-hrsystem-lao/images/og_cover.png">
-<!-- ข้อมูลโปรแกรมให้ Google (ราคาต้องตรงกับ PRICES.hr ใน script) -->
+<!-- ข้อมูลโปรแกรมให้ Google (ราคา = PRICES.hr รายเดือน S..XL ต้องตรงกับ script) -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -33,7 +33,7 @@
   "image": "https://pernscmt.github.io/seafog-hrsystem-lao/images/og_cover.png",
   "description": "ລະບົບບໍລິຫານບຸກຄະລາກອນ ແລະ ເງິນເດືອນ ພາສາລາວ ຄິດໄລ່ອາກອນ ແລະ ປະກັນສັງຄົມ",
   "publisher": { "@type": "Organization", "name": "Seafog Software" },
-  "offers": { "@type": "AggregateOffer", "priceCurrency": "LAK", "lowPrice": "150000", "highPrice": "8000000" }
+  "offers": { "@type": "AggregateOffer", "priceCurrency": "LAK", "lowPrice": "150000", "highPrice": "800000" }
 }
 </script>
 <!-- หน้าเว็บ Seafog Software (GitHub Pages ของ pernscmt/seafog-hrsystem-lao) [2026-11-19]
@@ -102,7 +102,8 @@
   .badge { display: inline-block; font-size: 13px; font-weight: 600; color: var(--accent);
            background: var(--accent-soft); border: 1px solid var(--line); padding: 3px 12px; border-radius: 999px; }
   .btns { display: flex; flex-wrap: wrap; gap: 10px; }
-  .btn { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-weight: 600;
+  /* font: inherit = <button class="btn"> (ຄັດລອກລິ້ງ) ใช้ฟอนต์ลาวเดียวกับปุ่ม <a> */
+  .btn { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font: inherit; font-weight: 600; cursor: pointer;
          padding: 11px 18px; border-radius: 10px; border: 1px solid var(--btn2-line); background: var(--btn2); color: var(--text); }
   .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-text); }
   .btn:hover { filter: brightness(1.06); }
@@ -166,7 +167,8 @@
          display: grid; place-items: center; box-shadow: 0 6px 20px rgba(0, 0, 0, .25);
          transition: opacity .2s, transform .2s; }
   .fab svg { width: 56px; height: 56px; }
-  .fab.hide { opacity: 0; transform: scale(.8); pointer-events: none; }
+  .fab.hide { opacity: 0; transform: scale(.8); pointer-events: none; visibility: hidden;
+              transition: opacity .2s, transform .2s, visibility 0s .2s; }
   .fab:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
 
   /* ---------- ราคา ---------- */
@@ -652,11 +654,11 @@
     }
   });
 
-  // ---------- ปุ่ม Telegram ลอย: ซ่อนเมื่อส่วนติดต่ออยู่บนจอ ----------
+  // ---------- ปุ่ม Telegram ลอย: ซ่อนเมื่อเลื่อนถึงส่วนติดต่อ หรือเลยลงไป (footer) ----------
   var fab = document.getElementById("fab");
   if ("IntersectionObserver" in window) {
     new IntersectionObserver(function (entries) {
-      fab.classList.toggle("hide", entries[0].isIntersecting);
+      fab.classList.toggle("hide", entries[0].boundingClientRect.top < window.innerHeight);
     }).observe(document.getElementById("contact"));
   }
 </script>
