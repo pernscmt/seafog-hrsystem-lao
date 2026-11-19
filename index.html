@@ -161,7 +161,7 @@
   .mobilebox p { margin: 2px 0 12px; color: var(--muted); font-size: 14px; }
   .mobilebox .btns .btn { padding: 9px 14px; font-size: 14px; }
 
-  /* ปุ่ม WhatsApp ลอยมุมขวาล่าง — ซ่อนเมื่อเลื่อนถึงส่วนติดต่อ */
+  /* ปุ่ม Telegram ลอยมุมขวาล่าง — ซ่อนเมื่อเลื่อนถึงส่วนติดต่อ */
   .fab { position: fixed; right: 16px; bottom: 16px; z-index: 10; width: 56px; height: 56px; border-radius: 50%;
          display: grid; place-items: center; box-shadow: 0 6px 20px rgba(0, 0, 0, .25);
          transition: opacity .2s, transform .2s; }
@@ -368,9 +368,9 @@
         <b>💻 ໂປຣແກຣມນີ້ຕິດຕັ້ງໃນຄອມພິວເຕີ Windows</b>
         <p>ເປີດໜ້ານີ້ໃນຄອມພິວເຕີ ເພື່ອດາວໂຫຼດ ແລະ ຕິດຕັ້ງ — ສົ່ງລິ້ງໄວ້ກ່ອນໄດ້</p>
         <div class="btns">
-          <a class="btn primary" id="shareWa" href="https://wa.me/?text=https%3A%2F%2Fpernscmt.github.io%2Fseafog-hrsystem-lao%2F" rel="noopener">ສົ່ງລິ້ງໃສ່ WhatsApp</a>
+          <a class="btn primary" href="https://t.me/share/url?url=https%3A%2F%2Fpernscmt.github.io%2Fseafog-hrsystem-lao%2F" rel="noopener">ສົ່ງລິ້ງໃສ່ Telegram</a>
           <button type="button" class="btn" id="copyLink">ຄັດລອກລິ້ງ</button>
-          <a class="btn" href="https://wa.me/8562055682333" data-wa-text="ສະບາຍດີ ຂໍເບິ່ງເດໂມ HR System" rel="noopener">ທັກຂໍເດໂມ</a>
+          <a class="btn" href="https://t.me/S_pern" rel="noopener">ທັກຂໍເດໂມ</a>
         </div>
       </div>
       <div class="grid2">
@@ -554,8 +554,9 @@
 
 <div class="lightbox" id="lightbox" role="dialog" aria-label="ຮູບຂະໜາດໃຫຍ່"><img alt=""></div>
 
-<a class="fab" id="fab" href="https://wa.me/8562055682333" data-wa-text="ສະບາຍດີ ສົນໃຈ HR System" rel="noopener" aria-label="ທັກ WhatsApp">
-  <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#25D366"/><path d="M12 5.5a6.5 6.5 0 0 0-5.6 9.8L5.5 18.5l3.3-.9A6.5 6.5 0 1 0 12 5.5zm3.4 8.9c-.1.4-.8.8-1.2.8-.3 0-.7.1-2.3-.6-1.9-.8-3.1-2.8-3.2-2.9-.1-.1-.8-1-.8-1.9s.5-1.4.6-1.6c.2-.2.4-.2.5-.2h.4c.1 0 .3 0 .4.3l.6 1.4c0 .1.1.2 0 .4l-.3.4-.3.3c-.1.1-.2.2-.1.4.1.2.6 1 1.3 1.6.9.8 1.6 1 1.8 1.1.2.1.3.1.4-.1l.6-.7c.1-.2.3-.2.4-.1l1.3.6c.2.1.3.2.4.2 0 .1 0 .4-.1.8z" fill="#fff"/></svg>
+<!-- ปุ่มลอย = Telegram (ช่องทางซื้อหลัก ตรงกับ version.SUPPORT_CONTACT); บอตพร้อมแล้วเปลี่ยนเป็น t.me/<ชื่อบอต>?start=web -->
+<a class="fab" id="fab" href="https://t.me/S_pern" rel="noopener" aria-label="ທັກ Telegram">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#229ED9"/><path d="M5.5 11.8l11.6-4.5c.5-.2 1 .1.8.9l-2 9.3c-.1.6-.5.8-1 .5l-2.9-2.1-1.4 1.3c-.2.2-.3.3-.6.3l.2-3 5.4-4.9c.2-.2 0-.3-.3-.1l-6.7 4.2-2.9-.9c-.6-.2-.6-.6.1-.9z" fill="#fff"/></svg>
 </a>
 
 <footer>
@@ -635,11 +636,7 @@
   box.addEventListener("click", closeBox);
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeBox(); });
 
-  // ---------- ลิงก์ WhatsApp ใส่ข้อความทักไว้ให้ (เข้ารหัสด้วย JS ไม่ได้ = ใช้ลิงก์เปล่า) ----------
   var PAGE_URL = "https://pernscmt.github.io/seafog-hrsystem-lao/";
-  document.querySelectorAll("a[data-wa-text]").forEach(function (a) {
-    a.href = a.href.split("?")[0] + "?text=" + encodeURIComponent(a.dataset.waText);
-  });
 
   // ---------- เปิดจากมือถือ = แสดงกล่อง "ติดตั้งในคอม" (ปุ่มดาวน์โหลดยังกดได้ตามเดิม) ----------
   var isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ||
@@ -655,7 +652,7 @@
     }
   });
 
-  // ---------- ปุ่ม WhatsApp ลอย: ซ่อนเมื่อส่วนติดต่ออยู่บนจอ ----------
+  // ---------- ปุ่ม Telegram ลอย: ซ่อนเมื่อส่วนติดต่ออยู่บนจอ ----------
   var fab = document.getElementById("fab");
   if ("IntersectionObserver" in window) {
     new IntersectionObserver(function (entries) {
