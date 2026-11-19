@@ -3,8 +3,39 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Seafog Software · HR System ແລະ Face Scan</title>
+<title>ໂປຣແກຣມເງິນເດືອນ HR ພາສາລາວ · ສະແກນໜ້າລົງເວລາ | Seafog Software</title>
 <meta name="description" content="Seafog Software — ລະບົບບໍລິຫານບຸກຄະລາກອນ ແລະ ເງິນເດືອນ (HR System) ແລະ ສະແກນໜ້າລົງເວລາ (Face Scan) ພາສາລາວ ສຳລັບທຸລະກິດລາວ. ທົດລອງຟຣີ 30 ວັນ.">
+<!-- รูป/ข้อความตอนแชร์ลิงก์ใน Facebook / WhatsApp / Telegram (og:image ต้องเป็น URL เต็ม) -->
+<link rel="canonical" href="https://pernscmt.github.io/seafog-hrsystem-lao/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Seafog Software">
+<meta property="og:locale" content="lo_LA">
+<meta property="og:url" content="https://pernscmt.github.io/seafog-hrsystem-lao/">
+<meta property="og:title" content="ໂປຣແກຣມເງິນເດືອນ HR ພາສາລາວ · ສະແກນໜ້າລົງເວລາ">
+<meta property="og:description" content="ຈັດການພະນັກງານ, ເວລາ, ລາພັກ ແລະ ຄິດໄລ່ເງິນເດືອນ ພ້ອມອາກອນ ແລະ ປະກັນສັງຄົມ ຕາມລະບຽບລາວ. ທົດລອງຟຣີ 30 ວັນ.">
+<meta property="og:image" content="https://pernscmt.github.io/seafog-hrsystem-lao/images/og_cover.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="670">
+<meta property="og:image:alt" content="ໜ້າຫຼັກ HR System">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ໂປຣແກຣມເງິນເດືອນ HR ພາສາລາວ · ສະແກນໜ້າລົງເວລາ">
+<meta name="twitter:image" content="https://pernscmt.github.io/seafog-hrsystem-lao/images/og_cover.png">
+<!-- ข้อมูลโปรแกรมให้ Google (ราคาต้องตรงกับ PRICES.hr ใน script) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "HR System",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Windows 10, Windows 11",
+  "inLanguage": "lo",
+  "url": "https://pernscmt.github.io/seafog-hrsystem-lao/",
+  "image": "https://pernscmt.github.io/seafog-hrsystem-lao/images/og_cover.png",
+  "description": "ລະບົບບໍລິຫານບຸກຄະລາກອນ ແລະ ເງິນເດືອນ ພາສາລາວ ຄິດໄລ່ອາກອນ ແລະ ປະກັນສັງຄົມ",
+  "publisher": { "@type": "Organization", "name": "Seafog Software" },
+  "offers": { "@type": "AggregateOffer", "priceCurrency": "LAK", "lowPrice": "150000", "highPrice": "8000000" }
+}
+</script>
 <!-- หน้าเว็บ Seafog Software (GitHub Pages ของ pernscmt/seafog-hrsystem-lao) [2026-11-19]
      ต้นฉบับอยู่ที่ hr_app\docs\download_page\index.html — แก้แล้วอัปขึ้น repo ด้วย gh api (ดู progress.md)
      ลิงก์ไฟล์อ่านจาก GitHub API releases/latest ตอนเปิดหน้า (ชื่อไฟล์มีเลขเวอร์ชัน) อ่านไม่ได้ = ลิงก์ไปหน้า Release ล่าสุด
@@ -122,6 +153,21 @@
   .warnbox code { background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 0 6px;
                   font-family: inherit; font-weight: 600; white-space: nowrap; }
   .warnbox p { margin: 0; color: var(--muted); }
+  /* กล่องสำหรับคนเปิดจากมือถือ (โปรแกรมติดตั้งได้แค่ Windows) — JS เอา hidden ออกเมื่อเป็นมือถือ */
+  .mobilebox { margin: 0 0 18px; padding: 16px 18px; border-radius: 14px; background: var(--card);
+               border: 2px solid var(--accent); box-shadow: var(--shadow); }
+  .mobilebox[hidden] { display: none; }
+  .mobilebox b { display: block; font-size: 16px; }
+  .mobilebox p { margin: 2px 0 12px; color: var(--muted); font-size: 14px; }
+  .mobilebox .btns .btn { padding: 9px 14px; font-size: 14px; }
+
+  /* ปุ่ม WhatsApp ลอยมุมขวาล่าง — ซ่อนเมื่อเลื่อนถึงส่วนติดต่อ */
+  .fab { position: fixed; right: 16px; bottom: 16px; z-index: 10; width: 56px; height: 56px; border-radius: 50%;
+         display: grid; place-items: center; box-shadow: 0 6px 20px rgba(0, 0, 0, .25);
+         transition: opacity .2s, transform .2s; }
+  .fab svg { width: 56px; height: 56px; }
+  .fab.hide { opacity: 0; transform: scale(.8); pointer-events: none; }
+  .fab:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
 
   /* ---------- ราคา ---------- */
   .promo { margin: 0 0 16px; padding: 12px 16px; border-radius: 12px; background: var(--accent-soft);
@@ -318,6 +364,15 @@
         <h2>ເລືອກໃຊ້ຕາມຄວາມຕ້ອງການ</h2>
         <p class="sub">ດາວໂຫຼດຟຣີ ທົດລອງໃຊ້ໄດ້ທັນທີ 30 ວັນ (ບໍ່ເກີນ 20 ຄົນ)</p>
       </div>
+      <div class="mobilebox" id="mobilebox" hidden>
+        <b>💻 ໂປຣແກຣມນີ້ຕິດຕັ້ງໃນຄອມພິວເຕີ Windows</b>
+        <p>ເປີດໜ້ານີ້ໃນຄອມພິວເຕີ ເພື່ອດາວໂຫຼດ ແລະ ຕິດຕັ້ງ — ສົ່ງລິ້ງໄວ້ກ່ອນໄດ້</p>
+        <div class="btns">
+          <a class="btn primary" id="shareWa" href="https://wa.me/?text=https%3A%2F%2Fpernscmt.github.io%2Fseafog-hrsystem-lao%2F" rel="noopener">ສົ່ງລິ້ງໃສ່ WhatsApp</a>
+          <button type="button" class="btn" id="copyLink">ຄັດລອກລິ້ງ</button>
+          <a class="btn" href="https://wa.me/8562055682333" data-wa-text="ສະບາຍດີ ຂໍເບິ່ງເດໂມ HR System" rel="noopener">ທັກຂໍເດໂມ</a>
+        </div>
+      </div>
       <div class="grid2">
         <section class="card" data-repo="pernscmt/seafog-hrsystem-lao">
           <h3>HR System <span class="ver"></span></h3>
@@ -499,6 +554,10 @@
 
 <div class="lightbox" id="lightbox" role="dialog" aria-label="ຮູບຂະໜາດໃຫຍ່"><img alt=""></div>
 
+<a class="fab" id="fab" href="https://wa.me/8562055682333" data-wa-text="ສະບາຍດີ ສົນໃຈ HR System" rel="noopener" aria-label="ທັກ WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#25D366"/><path d="M12 5.5a6.5 6.5 0 0 0-5.6 9.8L5.5 18.5l3.3-.9A6.5 6.5 0 1 0 12 5.5zm3.4 8.9c-.1.4-.8.8-1.2.8-.3 0-.7.1-2.3-.6-1.9-.8-3.1-2.8-3.2-2.9-.1-.1-.8-1-.8-1.9s.5-1.4.6-1.6c.2-.2.4-.2.5-.2h.4c.1 0 .3 0 .4.3l.6 1.4c0 .1.1.2 0 .4l-.3.4-.3.3c-.1.1-.2.2-.1.4.1.2.6 1 1.3 1.6.9.8 1.6 1 1.8 1.1.2.1.3.1.4-.1l.6-.7c.1-.2.3-.2.4-.1l1.3.6c.2.1.3.2.4.2 0 .1 0 .4-.1.8z" fill="#fff"/></svg>
+</a>
+
 <footer>
   <div class="wrap">
     <a class="logo" href="#top"><svg><use href="#logo"/></svg><b>Seafog <span>Software</span></b></a>
@@ -575,6 +634,34 @@
   function closeBox() { box.classList.remove("open"); }
   box.addEventListener("click", closeBox);
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeBox(); });
+
+  // ---------- ลิงก์ WhatsApp ใส่ข้อความทักไว้ให้ (เข้ารหัสด้วย JS ไม่ได้ = ใช้ลิงก์เปล่า) ----------
+  var PAGE_URL = "https://pernscmt.github.io/seafog-hrsystem-lao/";
+  document.querySelectorAll("a[data-wa-text]").forEach(function (a) {
+    a.href = a.href.split("?")[0] + "?text=" + encodeURIComponent(a.dataset.waText);
+  });
+
+  // ---------- เปิดจากมือถือ = แสดงกล่อง "ติดตั้งในคอม" (ปุ่มดาวน์โหลดยังกดได้ตามเดิม) ----------
+  var isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ||
+                 (navigator.maxTouchPoints > 1 && /Macintosh/.test(navigator.userAgent)); // iPadOS แสดงเป็น Mac
+  if (isMobile) document.getElementById("mobilebox").hidden = false;
+  var copyBtn = document.getElementById("copyLink");
+  copyBtn.addEventListener("click", function () {
+    function done() { copyBtn.textContent = "ຄັດລອກແລ້ວ ✓"; setTimeout(function () { copyBtn.textContent = "ຄັດລອກລິ້ງ"; }, 2000); }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(PAGE_URL).then(done, function () { prompt("ຄັດລອກລິ້ງນີ້:", PAGE_URL); });
+    } else {
+      prompt("ຄັດລອກລິ້ງນີ້:", PAGE_URL);
+    }
+  });
+
+  // ---------- ปุ่ม WhatsApp ลอย: ซ่อนเมื่อส่วนติดต่ออยู่บนจอ ----------
+  var fab = document.getElementById("fab");
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(function (entries) {
+      fab.classList.toggle("hide", entries[0].isIntersecting);
+    }).observe(document.getElementById("contact"));
+  }
 </script>
 </body>
 </html>
