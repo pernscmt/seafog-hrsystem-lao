@@ -58,6 +58,21 @@
   .steps h3 { margin: 0 0 8px; font-size: 18px; }
   .steps ol { margin: 0; padding-left: 22px; color: var(--muted); }
   .steps li { margin: 4px 0; }
+  .shots { margin-top: 32px; }
+  .shots h3 { margin: 0 0 4px; font-size: 18px; }
+  .shots .note { margin: 0 0 12px; color: var(--muted); font-size: 14px; }
+  .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+  .shot { margin: 0; background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+          overflow: hidden; }
+  .shot button { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; }
+  .shot img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9.5; object-fit: cover;
+              object-position: top left; }
+  .shot figcaption { padding: 8px 12px; font-size: 14px; }
+  .shot figcaption span { color: var(--muted); }
+  .lightbox { position: fixed; inset: 0; background: rgba(2, 6, 23, .88); display: none;
+              align-items: center; justify-content: center; padding: 16px; z-index: 10; cursor: zoom-out; }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 100%; max-height: 100%; border-radius: 8px; }
   footer { margin-top: 32px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
   footer a { color: var(--accent); }
   @media (max-width: 480px) { h1 { font-size: 25px; } .wrap { padding-top: 28px; } }
@@ -109,6 +124,29 @@
     </ol>
   </div>
 
+  <section class="shots">
+    <h3>ຕົວຢ່າງໜ້າຈໍ</h3>
+    <p class="note">ຂໍ້ມູນໃນຮູບເປັນຂໍ້ມູນສົມມຸດ · ກົດຮູບເພື່ອເບິ່ງຂະໜາດໃຫຍ່</p>
+    <div class="gallery">
+      <figure class="shot"><button type="button"><img src="images/hr_1_dashboard.png" alt="HR System ໜ້າຫຼັກ" loading="lazy" width="1280" height="760"></button>
+        <figcaption>ໜ້າຫຼັກ <span>· HR System</span></figcaption></figure>
+      <figure class="shot"><button type="button"><img src="images/hr_2_employees.png" alt="HR System ລາຍຊື່ພະນັກງານ" loading="lazy" width="1280" height="760"></button>
+        <figcaption>ລາຍຊື່ພະນັກງານ <span>· HR System</span></figcaption></figure>
+      <figure class="shot"><button type="button"><img src="images/hr_5_employee_form.png" alt="HR System ຂໍ້ມູນພະນັກງານ" loading="lazy" width="1280" height="760"></button>
+        <figcaption>ຂໍ້ມູນພະນັກງານ <span>· HR System</span></figcaption></figure>
+      <figure class="shot"><button type="button"><img src="images/hr_3_payroll.png" alt="HR System ຄິດໄລ່ເງິນເດືອນ" loading="lazy" width="1280" height="760"></button>
+        <figcaption>ຄິດໄລ່ເງິນເດືອນ <span>· HR System</span></figcaption></figure>
+      <figure class="shot"><button type="button"><img src="images/hr_4_attendance.png" alt="HR System ເວລາສະແກນ" loading="lazy" width="1280" height="760"></button>
+        <figcaption>ເວລາສະແກນ <span>· HR System</span></figcaption></figure>
+      <figure class="shot"><button type="button"><img src="images/fs_1_scan.jpg" alt="Face Scan ໜ້າສະແກນ" loading="lazy" width="1280" height="720"></button>
+        <figcaption>ໜ້າສະແກນໜ້າ <span>· Face Scan</span></figcaption></figure>
+      <figure class="shot"><button type="button"><img src="images/fs_2_mesh.jpg" alt="Face Scan ເສັ້ນຕາໜ່າງໃບໜ້າ" loading="lazy" width="1280" height="720"></button>
+        <figcaption>ເສັ້ນຕາໜ່າງໃບໜ້າ (Face Landmark) <span>· Face Scan</span></figcaption></figure>
+    </div>
+  </section>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-label="ຮູບຂະໜາດໃຫຍ່"><img alt=""></div>
+
   <footer>
     ຕິດຕໍ່ຊື້ / ສອບຖາມ: <a href="https://t.me/S_pern" rel="noopener">Telegram @S_pern</a>
   </footer>
@@ -134,6 +172,21 @@
       })
       .catch(function () { /* คงลิงก์ releases/latest */ });
   });
+
+  // กดรูปตัวอย่าง = ขยายเต็มจอ, กดอีกครั้ง / Esc = ปิด
+  var box = document.getElementById("lightbox");
+  var big = box.querySelector("img");
+  document.querySelectorAll(".shot button").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var img = b.querySelector("img");
+      big.src = img.src;
+      big.alt = img.alt;
+      box.classList.add("open");
+    });
+  });
+  function closeBox() { box.classList.remove("open"); }
+  box.addEventListener("click", closeBox);
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeBox(); });
 </script>
 </body>
 </html>
