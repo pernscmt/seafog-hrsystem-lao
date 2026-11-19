@@ -54,6 +54,39 @@
   .dl b { display: block; font-size: 16px; }
   .dl small { display: block; opacity: .85; font-size: 13px; }
   .dl .size { font-size: 13px; white-space: nowrap; opacity: .85; }
+  /* ---------- ລາຄາ ---------- */
+  .pricing { margin-top: 32px; }
+  .pricing h3 { margin: 0 0 4px; font-size: 18px; }
+  .pricing .note { margin: 0 0 14px; color: var(--muted); font-size: 14px; }
+  .promo { margin: 0 0 14px; padding: 10px 14px; border-radius: 10px; background: var(--accent-soft);
+           color: var(--text); font-size: 14px; border: 1px solid var(--line); }
+  .controls { display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; margin-bottom: 14px; }
+  .seg { display: inline-flex; flex-wrap: wrap; background: var(--card); border: 1px solid var(--line);
+         border-radius: 10px; padding: 3px; gap: 3px; }
+  .seg button { font: inherit; font-size: 14px; border: 0; background: none; color: var(--muted);
+                padding: 6px 12px; border-radius: 7px; cursor: pointer; }
+  .seg button[aria-pressed="true"] { background: var(--accent); color: var(--accent-text); }
+  .seg button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .seg .tag { font-size: 11px; margin-left: 4px; opacity: .9; }
+  .plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; }
+  .plan { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px;
+          display: flex; flex-direction: column; gap: 4px; }
+  .plan .name { font-weight: 700; font-size: 17px; }
+  .plan .who { color: var(--muted); font-size: 14px; }
+  .plan .price { font-size: 22px; font-weight: 700; margin-top: 6px; font-variant-numeric: tabular-nums; }
+  .plan .price small { font-size: 13px; font-weight: 400; color: var(--muted); }
+  .plan .was { color: var(--muted); font-size: 13px; text-decoration: line-through; min-height: 1.3em; }
+  .terms { margin: 14px 0 0; padding-left: 20px; color: var(--muted); font-size: 14px; }
+  .terms li { margin: 2px 0; }
+  .install { margin-top: 18px; }
+  .install h4 { margin: 0 0 8px; font-size: 16px; }
+  .install .rows { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; }
+  .install .row { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+  .install .row b { display: block; font-variant-numeric: tabular-nums; }
+  .install .row span { color: var(--muted); font-size: 14px; }
+  .buy { display: inline-block; margin-top: 16px; text-decoration: none; background: var(--accent);
+         color: var(--accent-text); padding: 10px 18px; border-radius: 10px; font-weight: 600; }
+  .buy:hover { filter: brightness(1.06); }
   .steps { margin-top: 28px; }
   .steps h3 { margin: 0 0 8px; font-size: 18px; }
   .steps ol { margin: 0; padding-left: 22px; color: var(--muted); }
@@ -114,6 +147,40 @@
     </section>
   </div>
 
+  <!-- ราคา: ต้องตรงกับ hr_license_bot\knowledge\prices.json (บอตตอบลูกค้าจากไฟล์นั้น) — เปลี่ยนราคาแก้ทั้ง 2 ที่ -->
+  <section class="pricing" id="pricing">
+    <h3>ລາຄາ</h3>
+    <p class="note">ຄິດຕາມຈຳນວນພະນັກງານສູງສຸດ · ລາຄາເປັນກີບ</p>
+    <p class="promo">🎉 ລູກຄ້າກຸ່ມທຳອິດ ມີສ່ວນຫຼຸດພິເສດປີທຳອິດ — ສອບຖາມທາງ Telegram</p>
+    <div class="controls">
+      <div class="seg" id="product" role="group" aria-label="ເລືອກໂປຣແກຣມ">
+        <button type="button" data-v="hr" aria-pressed="true">HR System</button>
+        <button type="button" data-v="fs" aria-pressed="false">Face Scan</button>
+        <button type="button" data-v="set" aria-pressed="false">ຊຸດຄູ່ HR + Face Scan</button>
+      </div>
+      <div class="seg" id="period" role="group" aria-label="ເລືອກໄລຍະ">
+        <button type="button" data-v="m" aria-pressed="false">ລາຍເດືອນ</button>
+        <button type="button" data-v="y" aria-pressed="true">ລາຍປີ<span class="tag">ຟຣີ 2 ເດືອນ</span></button>
+      </div>
+    </div>
+    <div class="plans" id="plans"></div>
+    <ul class="terms">
+      <li>ທົດລອງໃຊ້ຟຣີ 30 ວັນ (ບໍ່ເກີນ 20 ຄົນ) ບໍ່ຕ້ອງສະໝັກ</li>
+      <li>Face Scan ຕ້ອງໃຊ້ຄູ່ກັບ HR System · ນັບຕາມຈຳນວນຄົນທີ່ລົງທະບຽນໜ້າ · ໃຊ້ກ້ອງ USB ທົ່ວໄປໄດ້</li>
+      <li>ຊຸດຄູ່ ຖືກກວ່າຊື້ແຍກປະມານ 15%</li>
+      <li>ພະນັກງານເກີນ 200 ຄົນ ກະລຸນາຕິດຕໍ່ສອບຖາມ</li>
+    </ul>
+    <div class="install">
+      <h4>ຄ່າຕິດຕັ້ງ (ຄັ້ງດຽວ · ບໍ່ບັງຄັບ)</h4>
+      <div class="rows">
+        <div class="row"><b>ຟຣີ</b><span>ຕິດຕັ້ງເອງຕາມຄູ່ມື</span></div>
+        <div class="row"><b>500,000 ກີບ</b><span>ຕິດຕັ້ງໃຫ້ທາງໄກ (AnyDesk) + ຊ່ວຍນຳເຂົ້າລາຍຊື່ພະນັກງານ</span></div>
+        <div class="row"><b>1,500,000 ກີບ</b><span>ໄປຕິດຕັ້ງທີ່ຮ້ານ + ເຊື່ອມເຄື່ອງສະແກນ + ສອນໃຊ້ງານ 1 ວັນ</span></div>
+      </div>
+    </div>
+    <a class="buy" href="https://t.me/S_pern" rel="noopener">ສັ່ງຊື້ / ສອບຖາມ ທາງ Telegram</a>
+  </section>
+
   <div class="steps">
     <h3>ຂັ້ນຕອນຕິດຕັ້ງ</h3>
     <ol>
@@ -172,6 +239,44 @@
       })
       .catch(function () { /* คงลิงก์ releases/latest */ });
   });
+
+  // ---------- ราคา (ตรงกับ hr_license_bot\knowledge\prices.json) ----------
+  var PRICES = {
+    hr:  [["S", 20, 150000, 1500000], ["M", 50, 300000, 3000000], ["L", 100, 500000, 5000000], ["XL", 200, 800000, 8000000]],
+    fs:  [["S", 20, 80000, 800000], ["M", 50, 150000, 1500000], ["L", 100, 250000, 2500000], ["XL", 200, 400000, 4000000]],
+    set: [["S", 20, 195000, 1950000], ["M", 50, 380000, 3800000], ["L", 100, 640000, 6400000], ["XL", 200, 1020000, 10200000]]
+  };
+  var sel = { product: "hr", period: "y" };
+  function kip(n) { return n.toLocaleString("en-US"); }
+  function renderPlans() {
+    var yearly = sel.period === "y";
+    var col = yearly ? 3 : 2;
+    var html = PRICES[sel.product].map(function (p, i) {
+      var was = "";
+      if (sel.product === "set") {
+        var sum = PRICES.hr[i][col] + PRICES.fs[i][col];
+        was = "ຊື້ແຍກ " + kip(sum);
+      }
+      return '<div class="plan"><div class="name">' + p[0] + '</div>' +
+        '<div class="who">ບໍ່ເກີນ ' + p[1] + ' ຄົນ</div>' +
+        '<div class="price">' + kip(p[col]) + ' <small>ກີບ/' + (yearly ? "ປີ" : "ເດືອນ") + '</small></div>' +
+        '<div class="was">' + was + '</div></div>';
+    }).join("");
+    document.getElementById("plans").innerHTML = html;
+  }
+  ["product", "period"].forEach(function (key) {
+    var group = document.getElementById(key);
+    group.querySelectorAll("button").forEach(function (b) {
+      b.addEventListener("click", function () {
+        sel[key] = b.dataset.v;
+        group.querySelectorAll("button").forEach(function (x) {
+          x.setAttribute("aria-pressed", String(x === b));
+        });
+        renderPlans();
+      });
+    });
+  });
+  renderPlans();
 
   // กดรูปตัวอย่าง = ขยายเต็มจอ, กดอีกครั้ง / Esc = ปิด
   var box = document.getElementById("lightbox");
