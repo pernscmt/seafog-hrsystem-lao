@@ -3,64 +3,121 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>seafog · ດາວໂຫຼດ</title>
-<meta name="description" content="ດາວໂຫຼດ HR System ແລະ Face Scan">
-<!-- หน้าดาวน์โหลด (GitHub Pages ของ pernscmt/seafog-hrsystem-lao) [2026-11-19]
+<title>Seafog Software · HR System ແລະ Face Scan</title>
+<meta name="description" content="Seafog Software — ລະບົບບໍລິຫານບຸກຄະລາກອນ ແລະ ເງິນເດືອນ (HR System) ແລະ ສະແກນໜ້າລົງເວລາ (Face Scan) ພາສາລາວ ສຳລັບທຸລະກິດລາວ. ທົດລອງຟຣີ 30 ວັນ.">
+<!-- หน้าเว็บ Seafog Software (GitHub Pages ของ pernscmt/seafog-hrsystem-lao) [2026-11-19]
      ต้นฉบับอยู่ที่ hr_app\docs\download_page\index.html — แก้แล้วอัปขึ้น repo ด้วย gh api (ดู progress.md)
-     ลิงก์ไฟล์อ่านจาก GitHub API releases/latest ตอนเปิดหน้า (ชื่อไฟล์มีเลขเวอร์ชัน) อ่านไม่ได้ = ลิงก์ไปหน้า Release ล่าสุด -->
+     ลิงก์ไฟล์อ่านจาก GitHub API releases/latest ตอนเปิดหน้า (ชื่อไฟล์มีเลขเวอร์ชัน) อ่านไม่ได้ = ลิงก์ไปหน้า Release ล่าสุด
+     ราคา (PRICES ใน script) ต้องตรงกับ hr_license_bot\knowledge\prices.json -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3CclipPath id='b'%3E%3Crect width='64' height='64' rx='15'/%3E%3C/clipPath%3E%3Cg clip-path='url(%23b)'%3E%3Crect width='64' height='64' fill='%230d2150'/%3E%3Ccircle cx='31' cy='24' r='7' fill='%23fcd34d'/%3E%3Cpath d='M4 45 L18 27 L28 37 L42 19 L60 43' stroke='%2338bdf8' stroke-width='4' fill='none' stroke-linejoin='round' stroke-linecap='round'/%3E%3Ccircle cx='18' cy='27' r='3' fill='white'/%3E%3Ccircle cx='42' cy='19' r='3' fill='white'/%3E%3Crect x='4' y='48' width='38' height='4' rx='2' fill='%23a5f3fc'/%3E%3Crect x='20' y='55' width='40' height='4' rx='2' fill='%23a5f3fc'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao+Looped:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #f1f5f9; --card: #ffffff; --text: #0f172a; --muted: #64748b; --line: #e2e8f0;
-    --accent: #2563eb; --accent-text: #ffffff; --accent-soft: #eff6ff; --btn2: #ffffff; --btn2-line: #cbd5e1;
+    --bg: #f8fafc; --bg2: #eef2f7; --card: #ffffff; --text: #0f172a; --muted: #5b6b80; --line: #e2e8f0;
+    --accent: #2563eb; --accent2: #0ea5e9; --accent-text: #ffffff; --accent-soft: #eaf1ff;
+    --btn2: #ffffff; --btn2-line: #cbd5e1; --ok: #16a34a; --shadow: 0 10px 30px rgba(15, 23, 42, .08);
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #0f172a; --card: #1e293b; --text: #e2e8f0; --muted: #94a3b8; --line: #334155;
-      --accent: #3b82f6; --accent-text: #ffffff; --accent-soft: #1e3a5f; --btn2: #0f172a; --btn2-line: #475569;
+      --bg: #0b1220; --bg2: #0f1a2e; --card: #131f35; --text: #e2e8f0; --muted: #93a3b8; --line: #23324d;
+      --accent: #3b82f6; --accent2: #38bdf8; --accent-text: #ffffff; --accent-soft: #15284a;
+      --btn2: #0f1a2e; --btn2-line: #33476a; --ok: #22c55e; --shadow: 0 10px 30px rgba(0, 0, 0, .35);
     }
   }
   * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body {
     margin: 0; background: var(--bg); color: var(--text);
     font-family: "Noto Sans Lao Looped", "Phetsarath OT", "Saysettha OT", system-ui, sans-serif;
-    line-height: 1.6;
+    line-height: 1.65;
   }
-  .wrap { max-width: 960px; margin: 0 auto; padding: 40px 16px 56px; }
-  header { margin-bottom: 28px; }
-  .brand { font-weight: 700; letter-spacing: .5px; color: var(--accent); font-size: 15px; }
-  h1 { margin: 4px 0 6px; font-size: 30px; line-height: 1.3; }
-  .lead { margin: 0; color: var(--muted); }
-  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
-  .card {
-    background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 22px;
-    display: flex; flex-direction: column; gap: 14px;
-  }
-  .card h2 { margin: 0; font-size: 21px; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  a { color: var(--accent); }
+  img { max-width: 100%; height: auto; }
+  main { overflow-x: clip; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+  section { scroll-margin-top: 72px; }
+  .sec { padding: 56px 0; }
+  .sec.alt { background: var(--bg2); }
+  .sec-head { margin-bottom: 24px; }
+  .eyebrow { font-size: 13px; font-weight: 700; color: var(--accent); letter-spacing: .4px; }
+  h2 { margin: 2px 0 6px; font-size: 26px; line-height: 1.35; }
+  .sub { margin: 0; color: var(--muted); }
+
+  /* ---------- แถบบน ---------- */
+  .top { position: sticky; top: 0; z-index: 5; background: color-mix(in srgb, var(--bg) 88%, transparent);
+         backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+  .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; height: 60px; }
+  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); }
+  .logo svg { width: 34px; height: 34px; flex: none; }
+  .logo b { font-size: 18px; letter-spacing: .2px; }
+  .logo span { color: var(--muted); font-weight: 400; }
+  .nav { display: flex; gap: 4px; flex-wrap: wrap; }
+  .nav a { text-decoration: none; color: var(--muted); font-size: 14px; padding: 6px 10px; border-radius: 8px; }
+  .nav a:hover { color: var(--text); background: var(--accent-soft); }
+  .nav a.cta { background: var(--accent); color: var(--accent-text); }
+
+  /* ---------- hero ---------- */
+  .hero { padding: 56px 0 40px; background:
+          radial-gradient(900px 400px at 85% -10%, color-mix(in srgb, var(--accent2) 22%, transparent), transparent),
+          radial-gradient(700px 360px at -10% 10%, color-mix(in srgb, var(--accent) 16%, transparent), transparent); }
+  .hero .wrap { display: grid; grid-template-columns: 1.05fr 1fr; gap: 36px; align-items: center; }
+  .hero .wrap > *, .contact > *, .grid2 > * { min-width: 0; }
+  .hero h1 { margin: 8px 0 12px; font-size: 38px; line-height: 1.3; }
+  .hero h1 em { font-style: normal; background: linear-gradient(90deg, var(--accent), var(--accent2));
+                -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero p.lead { margin: 0 0 22px; color: var(--muted); font-size: 17px; }
+  .badge { display: inline-block; font-size: 13px; font-weight: 600; color: var(--accent);
+           background: var(--accent-soft); border: 1px solid var(--line); padding: 3px 12px; border-radius: 999px; }
+  .btns { display: flex; flex-wrap: wrap; gap: 10px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-weight: 600;
+         padding: 11px 18px; border-radius: 10px; border: 1px solid var(--btn2-line); background: var(--btn2); color: var(--text); }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-text); }
+  .btn:hover { filter: brightness(1.06); }
+  .checks { list-style: none; padding: 0; margin: 20px 0 0; display: flex; flex-wrap: wrap; gap: 6px 18px;
+            color: var(--muted); font-size: 14px; }
+  .checks li::before { content: "✓ "; color: var(--ok); font-weight: 700; }
+  .shotstack { position: relative; padding: 0 6% 22% 0; }
+  .shotstack img { display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--line);
+                   box-shadow: var(--shadow); }
+  .shotstack img.front { position: absolute; width: 60%; right: 0; bottom: 0; }
+
+  /* ---------- จุดเด่น ---------- */
+  .feats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .feat { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
+  .feat .ic { width: 42px; height: 42px; border-radius: 10px; display: grid; place-items: center;
+              background: var(--accent-soft); color: var(--accent); margin-bottom: 10px; }
+  .feat .ic svg { width: 22px; height: 22px; }
+  .feat b { display: block; font-size: 16px; margin-bottom: 2px; }
+  .feat p { margin: 0; color: var(--muted); font-size: 14px; }
+
+  /* ---------- ผลิตภัณฑ์ + ดาวน์โหลด ---------- */
+  .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 24px;
+          display: flex; flex-direction: column; gap: 14px; box-shadow: var(--shadow); }
+  .card h3 { margin: 0; font-size: 22px; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .card > p { margin: 0; color: var(--muted); }
   .ver { font-size: 13px; font-weight: 600; color: var(--accent); background: var(--accent-soft);
          padding: 1px 9px; border-radius: 999px; }
   .ver:empty { display: none; }
-  .card p { margin: 0; color: var(--muted); }
-  .dl {
-    display: flex; align-items: center; justify-content: space-between; gap: 12px;
-    text-decoration: none; border-radius: 10px; padding: 12px 14px;
-    border: 1px solid var(--btn2-line); background: var(--btn2); color: var(--text);
-  }
+  .list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: 15px; }
+  .list li { padding-left: 24px; position: relative; }
+  .list li::before { content: "✓"; position: absolute; left: 0; color: var(--ok); font-weight: 700; }
+  .dl { display: flex; align-items: center; justify-content: space-between; gap: 12px; text-decoration: none;
+        border-radius: 10px; padding: 12px 14px; border: 1px solid var(--btn2-line); background: var(--btn2); color: var(--text); }
   .dl.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-text); }
   .dl:hover { filter: brightness(1.06); }
-  .dl:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+  .dl:focus-visible, .btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
   .dl b { display: block; font-size: 16px; }
   .dl small { display: block; opacity: .85; font-size: 13px; }
   .dl .size { font-size: 13px; white-space: nowrap; opacity: .85; }
-  /* ---------- ລາຄາ ---------- */
-  .pricing { margin-top: 32px; }
-  .pricing h3 { margin: 0 0 4px; font-size: 18px; }
-  .pricing .note { margin: 0 0 14px; color: var(--muted); font-size: 14px; }
-  .promo { margin: 0 0 14px; padding: 10px 14px; border-radius: 10px; background: var(--accent-soft);
-           color: var(--text); font-size: 14px; border: 1px solid var(--line); }
-  .controls { display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; margin-bottom: 14px; }
+  .req { margin: 14px 0 0; color: var(--muted); font-size: 14px; }
+
+  /* ---------- ราคา ---------- */
+  .promo { margin: 0 0 16px; padding: 12px 16px; border-radius: 12px; background: var(--accent-soft);
+           border: 1px solid var(--line); font-size: 15px; }
+  .controls { display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; margin-bottom: 16px; }
   .seg { display: inline-flex; flex-wrap: wrap; background: var(--card); border: 1px solid var(--line);
          border-radius: 10px; padding: 3px; gap: 3px; }
   .seg button { font: inherit; font-size: 14px; border: 0; background: none; color: var(--muted);
@@ -68,156 +125,367 @@
   .seg button[aria-pressed="true"] { background: var(--accent); color: var(--accent-text); }
   .seg button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
   .seg .tag { font-size: 11px; margin-left: 4px; opacity: .9; }
-  .plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; }
-  .plan { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px;
-          display: flex; flex-direction: column; gap: 4px; }
-  .plan .name { font-weight: 700; font-size: 17px; }
+  .plans { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .plan { position: relative; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px;
+          display: flex; flex-direction: column; gap: 2px; }
+  .plan.hot { border: 2px solid var(--accent); box-shadow: var(--shadow); }
+  .plan .pop { position: absolute; top: -11px; right: 14px; font-size: 12px; font-weight: 700; background: var(--accent);
+               color: var(--accent-text); padding: 1px 10px; border-radius: 999px; }
+  .plan .name { font-weight: 700; font-size: 18px; }
   .plan .who { color: var(--muted); font-size: 14px; }
-  .plan .price { font-size: 22px; font-weight: 700; margin-top: 6px; font-variant-numeric: tabular-nums; }
+  .plan .price { font-size: 24px; font-weight: 700; margin-top: 8px; font-variant-numeric: tabular-nums; }
   .plan .price small { font-size: 13px; font-weight: 400; color: var(--muted); }
-  .plan .was { color: var(--muted); font-size: 13px; text-decoration: line-through; min-height: 1.3em; }
-  .terms { margin: 14px 0 0; padding-left: 20px; color: var(--muted); font-size: 14px; }
-  .terms li { margin: 2px 0; }
-  .install { margin-top: 18px; }
-  .install h4 { margin: 0 0 8px; font-size: 16px; }
-  .install .rows { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; }
-  .install .row { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
-  .install .row b { display: block; font-variant-numeric: tabular-nums; }
-  .install .row span { color: var(--muted); font-size: 14px; }
-  .buy { display: inline-block; margin-top: 16px; text-decoration: none; background: var(--accent);
-         color: var(--accent-text); padding: 10px 18px; border-radius: 10px; font-weight: 600; }
-  .buy:hover { filter: brightness(1.06); }
-  .steps { margin-top: 28px; }
-  .steps h3 { margin: 0 0 8px; font-size: 18px; }
-  .steps ol { margin: 0; padding-left: 22px; color: var(--muted); }
-  .steps li { margin: 4px 0; }
-  .shots { margin-top: 32px; }
-  .shots h3 { margin: 0 0 4px; font-size: 18px; }
-  .shots .note { margin: 0 0 12px; color: var(--muted); font-size: 14px; }
-  .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
-  .shot { margin: 0; background: var(--card); border: 1px solid var(--line); border-radius: 12px;
-          overflow: hidden; }
+  .plan .was { color: var(--muted); font-size: 13px; text-decoration: line-through; min-height: 1.4em; }
+  .terms { margin: 16px 0 0; padding-left: 20px; color: var(--muted); font-size: 14px; }
+  .terms li { margin: 3px 0; }
+  .install { margin-top: 22px; }
+  .install h3 { margin: 0 0 10px; font-size: 17px; }
+  .rows { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .row { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+  .row b { display: block; font-variant-numeric: tabular-nums; }
+  .row span { color: var(--muted); font-size: 14px; }
+
+  /* ---------- รูปตัวอย่าง ---------- */
+  .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+  .shot { margin: 0; background: var(--card); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
   .shot button { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; }
-  .shot img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9.5; object-fit: cover;
-              object-position: top left; }
+  .shot img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9.5; object-fit: cover; object-position: top left; }
   .shot figcaption { padding: 8px 12px; font-size: 14px; }
   .shot figcaption span { color: var(--muted); }
   .lightbox { position: fixed; inset: 0; background: rgba(2, 6, 23, .88); display: none;
-              align-items: center; justify-content: center; padding: 16px; z-index: 10; cursor: zoom-out; }
+              align-items: center; justify-content: center; padding: 16px; z-index: 20; cursor: zoom-out; }
   .lightbox.open { display: flex; }
   .lightbox img { max-width: 100%; max-height: 100%; border-radius: 8px; }
-  footer { margin-top: 32px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
-  footer a { color: var(--accent); }
-  @media (max-width: 480px) { h1 { font-size: 25px; } .wrap { padding-top: 28px; } }
+
+  /* ---------- ติดตั้ง + FAQ ---------- */
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; counter-reset: s; list-style: none; padding: 0; margin: 0; }
+  .steps li { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; counter-increment: s; font-size: 15px; }
+  .steps li::before { content: counter(s); display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%;
+                      background: var(--accent); color: var(--accent-text); font-weight: 700; margin-bottom: 8px; }
+  .faq { display: grid; gap: 10px; }
+  .faq details { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px; }
+  .faq summary { cursor: pointer; font-weight: 600; }
+  .faq p { margin: 8px 0 0; color: var(--muted); }
+
+  /* ---------- ติดต่อ + ท้าย ---------- */
+  .contact { display: grid; grid-template-columns: 1.2fr 1fr; gap: 24px; align-items: center; background: var(--card);
+             border: 1px solid var(--line); border-radius: 18px; padding: 28px; box-shadow: var(--shadow); }
+  .contact h2 { margin-top: 0; }
+  .ch { display: grid; gap: 10px; }
+  .ch a { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text); padding: 12px 14px;
+          border: 1px solid var(--line); border-radius: 12px; background: var(--bg); }
+  .ch a:hover { border-color: var(--accent); }
+  .ch svg { width: 26px; height: 26px; flex: none; }
+  .ch small { display: block; color: var(--muted); font-size: 13px; }
+  footer { border-top: 1px solid var(--line); padding: 22px 0 32px; color: var(--muted); font-size: 14px; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: center; }
+
+  @media (max-width: 880px) {
+    .hero .wrap, .contact { grid-template-columns: 1fr; }
+    .feats { grid-template-columns: repeat(2, 1fr); }
+    .plans { grid-template-columns: repeat(2, 1fr); }
+    .steps { grid-template-columns: repeat(2, 1fr); }
+    .rows { grid-template-columns: 1fr; }
+    .nav a:not(.cta) { display: none; }
+  }
+  @media (max-width: 520px) {
+    .hero h1 { font-size: 29px; }
+    h2 { font-size: 22px; }
+    .feats, .plans, .steps { grid-template-columns: 1fr; }
+    .logo span { display: none; }
+    .sec { padding: 40px 0; }
+  }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header>
-    <div class="brand">seafog</div>
-    <h1>ດາວໂຫຼດໂປຣແກຣມ</h1>
-    <p class="lead">ລະບົບບໍລິຫານບຸກຄະລາກອນ ແລະ ເຄື່ອງສະແກນໜ້າລົງເວລາ ສຳລັບ Windows 10 / 11</p>
-  </header>
 
-  <div class="grid">
-    <section class="card" data-repo="pernscmt/seafog-hrsystem-lao">
-      <h2>HR System <span class="ver"></span></h2>
-      <p>ຂໍ້ມູນພະນັກງານ, ເວລາເຮັດວຽກ, ລາພັກ, ເງິນເດືອນ ແລະ ລາຍງານ</p>
-      <a class="dl primary" data-asset="HRSystem_Server_Setup_" href="https://github.com/pernscmt/seafog-hrsystem-lao/releases/latest">
-        <span><b>ເຄື່ອງເຊີບເວີ</b><small>ຕິດຕັ້ງເຄື່ອງດຽວ ພ້ອມຖານຂໍ້ມູນ</small></span>
-        <span class="size">~450 MB</span>
-      </a>
-      <a class="dl" data-asset="HRSystem_Setup_" href="https://github.com/pernscmt/seafog-hrsystem-lao/releases/latest">
-        <span><b>ເຄື່ອງລູກ</b><small>ຕິດຕັ້ງທຸກເຄື່ອງທີ່ໃຊ້ງານ</small></span>
-        <span class="size">~43 MB</span>
-      </a>
-    </section>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <!-- โลโก้ Seafog = ทะเลหมอกยามเช้า แบบไฮเทค: พื้นน้ำเงินเข้ม, พระอาทิตย์เรืองแสง,
+       ภูเขาเป็นเส้นโครงข่าย + จุดเชื่อม (แนวเดียวกับเส้นตาข่ายใบหน้าของ Face Scan), หมอก = เส้นแสงไล่สี -->
+  <symbol id="logo" viewBox="0 0 64 64">
+    <defs>
+      <linearGradient id="lbg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#0a1633"/><stop offset="1" stop-color="#11306b"/>
+      </linearGradient>
+      <radialGradient id="lsun" cx=".5" cy=".5" r=".5">
+        <stop offset="0" stop-color="#fde68a"/><stop offset=".45" stop-color="#f59e0b"/><stop offset="1" stop-color="#f59e0b" stop-opacity="0"/>
+      </radialGradient>
+      <linearGradient id="lmt" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#38bdf8" stop-opacity=".35"/><stop offset="1" stop-color="#38bdf8" stop-opacity="0"/>
+      </linearGradient>
+      <linearGradient id="lfog" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#22d3ee" stop-opacity="0"/><stop offset=".5" stop-color="#a5f3fc"/><stop offset="1" stop-color="#22d3ee" stop-opacity="0"/>
+      </linearGradient>
+      <clipPath id="box"><rect width="64" height="64" rx="15"/></clipPath>
+    </defs>
+    <g clip-path="url(#box)">
+      <rect width="64" height="64" fill="url(#lbg)"/>
+      <circle cx="31" cy="25" r="13" fill="url(#lsun)" opacity=".75"/>
+      <circle cx="31" cy="25" r="5.5" fill="#fcd34d"/>
+      <path d="M4 45 L18 27 L28 37 L42 19 L60 43 Z" fill="url(#lmt)"/>
+      <g stroke="#7dd3fc" stroke-width="1" opacity=".55" fill="none">
+        <path d="M18 27 L24 45 M28 37 L24 45 M28 37 L36 45 M42 19 L36 45 M42 19 L48 45 M28 37 L34 29"/>
+      </g>
+      <path d="M4 45 L18 27 L28 37 L42 19 L60 43" stroke="#38bdf8" stroke-width="2.4" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+      <g fill="#e0f2fe">
+        <circle cx="18" cy="27" r="2.1"/><circle cx="28" cy="37" r="1.8"/><circle cx="42" cy="19" r="2.3"/>
+        <circle cx="34" cy="29" r="1.4"/><circle cx="4" cy="45" r="1.6"/><circle cx="60" cy="43" r="1.6"/>
+      </g>
+      <rect x="2" y="44" width="40" height="2.6" rx="1.3" fill="url(#lfog)"/>
+      <rect x="18" y="49.5" width="44" height="2.6" rx="1.3" fill="url(#lfog)"/>
+      <rect x="6" y="55" width="36" height="2.6" rx="1.3" fill="url(#lfog)" opacity=".8"/>
+    </g>
+  </symbol>
+</svg>
 
-    <section class="card" data-repo="pernscmt/seafog-facescan-lao">
-      <h2>Face Scan <span class="ver"></span></h2>
-      <p>ເຄື່ອງສະແກນໜ້າລົງເວລາ ໃຊ້ຄູ່ກັບ HR System ຫຼື ໃຊ້ຢ່າງດຽວກໍໄດ້</p>
-      <a class="dl primary" data-asset="FaceScan_Server_Setup_" href="https://github.com/pernscmt/seafog-facescan-lao/releases/latest">
-        <span><b>ເຄື່ອງສະແກນໃໝ່</b><small>ຕິດຕັ້ງພ້ອມຖານຂໍ້ມູນ</small></span>
-        <span class="size">~540 MB</span>
-      </a>
-      <a class="dl" data-asset="FaceScan_Setup_" href="https://github.com/pernscmt/seafog-facescan-lao/releases/latest">
-        <span><b>ໂປຣແກຣມຢ່າງດຽວ</b><small>ເຄື່ອງທີ່ມີຖານຂໍ້ມູນແລ້ວ</small></span>
-        <span class="size">~130 MB</span>
-      </a>
-    </section>
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Seafog Software">
+      <svg><use href="#logo"/></svg>
+      <b>Seafog <span>Software</span></b>
+    </a>
+    <nav class="nav">
+      <a href="#products">ໂປຣແກຣມ</a>
+      <a href="#pricing">ລາຄາ</a>
+      <a href="#shots">ຕົວຢ່າງ</a>
+      <a href="#faq">ຄຳຖາມ</a>
+      <a href="#download" class="cta">ດາວໂຫຼດ</a>
+    </nav>
   </div>
+</header>
 
-  <!-- ราคา: ต้องตรงกับ hr_license_bot\knowledge\prices.json (บอตตอบลูกค้าจากไฟล์นั้น) — เปลี่ยนราคาแก้ทั้ง 2 ที่ -->
-  <section class="pricing" id="pricing">
-    <h3>ລາຄາ</h3>
-    <p class="note">ຄິດຕາມຈຳນວນພະນັກງານສູງສຸດ · ລາຄາເປັນກີບ</p>
-    <p class="promo">🎉 ລູກຄ້າກຸ່ມທຳອິດ ມີສ່ວນຫຼຸດພິເສດປີທຳອິດ — ສອບຖາມທາງ Telegram</p>
-    <div class="controls">
-      <div class="seg" id="product" role="group" aria-label="ເລືອກໂປຣແກຣມ">
-        <button type="button" data-v="hr" aria-pressed="true">HR System</button>
-        <button type="button" data-v="fs" aria-pressed="false">Face Scan</button>
-        <button type="button" data-v="set" aria-pressed="false">ຊຸດຄູ່ HR + Face Scan</button>
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="badge">ຊອບແວບໍລິຫານງານບຸກຄົນ ສຳລັບທຸລະກິດລາວ</span>
+        <h1>ລະບົບ HR, ເງິນເດືອນ ແລະ <em>ສະແກນໜ້າລົງເວລາ</em> ພາສາລາວ</h1>
+        <p class="lead">ຈັດການພະນັກງານ, ເວລາເຮັດວຽກ, ລາພັກ ແລະ ຄິດໄລ່ເງິນເດືອນພ້ອມອາກອນ ແລະ ປະກັນສັງຄົມ ໃນໂປຣແກຣມດຽວ —
+          ຂໍ້ມູນເກັບໃນເຄື່ອງຂອງທ່ານເອງ.</p>
+        <div class="btns">
+          <a class="btn primary" href="#download">ທົດລອງຟຣີ 30 ວັນ</a>
+          <a class="btn" href="#pricing">ເບິ່ງລາຄາ</a>
+        </div>
+        <ul class="checks">
+          <li>ບໍ່ຕ້ອງສະໝັກ</li>
+          <li>Windows 10 / 11</li>
+          <li>ອັບເດດອັດຕະໂນມັດ</li>
+        </ul>
       </div>
-      <div class="seg" id="period" role="group" aria-label="ເລືອກໄລຍະ">
-        <button type="button" data-v="m" aria-pressed="false">ລາຍເດືອນ</button>
-        <button type="button" data-v="y" aria-pressed="true">ລາຍປີ<span class="tag">ຟຣີ 2 ເດືອນ</span></button>
+      <div class="shotstack">
+        <img src="images/hr_1_dashboard.png" alt="ໜ້າຫຼັກ HR System" width="1280" height="760">
+        <img class="front" src="images/fs_1_scan.jpg" alt="ໜ້າສະແກນ Face Scan" width="1280" height="720">
       </div>
-    </div>
-    <div class="plans" id="plans"></div>
-    <ul class="terms">
-      <li>ທົດລອງໃຊ້ຟຣີ 30 ວັນ (ບໍ່ເກີນ 20 ຄົນ) ບໍ່ຕ້ອງສະໝັກ</li>
-      <li>Face Scan ໃຊ້ຢ່າງດຽວໄດ້ (ນຳເຂົ້າພະນັກງານຈາກ Excel, ສົ່ງເວລາອອກເປັນ Excel/CSV ຫຼື ເຂົ້າລະບົບອື່ນ) · ນັບຕາມຈຳນວນຄົນທີ່ລົງທະບຽນໜ້າ · ໃຊ້ກ້ອງ USB ທົ່ວໄປໄດ້</li>
-      <li>ຊຸດຄູ່ ຖືກກວ່າຊື້ແຍກປະມານ 15%</li>
-      <li>ພະນັກງານເກີນ 200 ຄົນ ກະລຸນາຕິດຕໍ່ສອບຖາມ</li>
-    </ul>
-    <div class="install">
-      <h4>ຄ່າຕິດຕັ້ງ (ຄັ້ງດຽວ · ບໍ່ບັງຄັບ)</h4>
-      <div class="rows">
-        <div class="row"><b>ຟຣີ</b><span>ຕິດຕັ້ງເອງຕາມຄູ່ມື</span></div>
-        <div class="row"><b>500,000 ກີບ</b><span>ຕິດຕັ້ງໃຫ້ທາງໄກ (AnyDesk) + ຊ່ວຍນຳເຂົ້າລາຍຊື່ພະນັກງານ</span></div>
-        <div class="row"><b>1,500,000 ກີບ</b><span>ໄປຕິດຕັ້ງທີ່ຮ້ານ + ເຊື່ອມເຄື່ອງສະແກນ + ສອນໃຊ້ງານ 1 ວັນ</span></div>
-      </div>
-    </div>
-    <a class="buy" href="https://t.me/S_pern" rel="noopener">ສັ່ງຊື້ / ສອບຖາມ ທາງ Telegram</a>
-  </section>
-
-  <div class="steps">
-    <h3>ຂັ້ນຕອນຕິດຕັ້ງ</h3>
-    <ol>
-      <li>ຕິດຕັ້ງ <b>HR System ເຄື່ອງເຊີບເວີ</b> ກ່ອນ (ເຄື່ອງດຽວ, ໃຊ້ສິດ admin)</li>
-      <li>ຕິດຕັ້ງ <b>HR System ເຄື່ອງລູກ</b> ທຸກເຄື່ອງທີ່ໃຊ້ງານ ແລ້ວນຳເຂົ້າໄຟລ໌ການເຊື່ອມຕໍ່ຈາກເຊີບເວີ</li>
-      <li>ຖ້າໃຊ້ເຄື່ອງສະແກນໜ້າ: ຕິດຕັ້ງ <b>Face Scan ເຄື່ອງສະແກນໃໝ່</b> ທີ່ເຄື່ອງສະແກນ</li>
-      <li>ໂປຣແກຣມອັບເດດເອງເມື່ອມີເວີຊັນໃໝ່ (ຕ້ອງມີອິນເຕີເນັດ)</li>
-    </ol>
-  </div>
-
-  <section class="shots">
-    <h3>ຕົວຢ່າງໜ້າຈໍ</h3>
-    <p class="note">ຂໍ້ມູນໃນຮູບເປັນຂໍ້ມູນສົມມຸດ · ກົດຮູບເພື່ອເບິ່ງຂະໜາດໃຫຍ່</p>
-    <div class="gallery">
-      <figure class="shot"><button type="button"><img src="images/hr_1_dashboard.png" alt="HR System ໜ້າຫຼັກ" loading="lazy" width="1280" height="760"></button>
-        <figcaption>ໜ້າຫຼັກ <span>· HR System</span></figcaption></figure>
-      <figure class="shot"><button type="button"><img src="images/hr_2_employees.png" alt="HR System ລາຍຊື່ພະນັກງານ" loading="lazy" width="1280" height="760"></button>
-        <figcaption>ລາຍຊື່ພະນັກງານ <span>· HR System</span></figcaption></figure>
-      <figure class="shot"><button type="button"><img src="images/hr_5_employee_form.png" alt="HR System ຂໍ້ມູນພະນັກງານ" loading="lazy" width="1280" height="760"></button>
-        <figcaption>ຂໍ້ມູນພະນັກງານ <span>· HR System</span></figcaption></figure>
-      <figure class="shot"><button type="button"><img src="images/hr_3_payroll.png" alt="HR System ຄິດໄລ່ເງິນເດືອນ" loading="lazy" width="1280" height="760"></button>
-        <figcaption>ຄິດໄລ່ເງິນເດືອນ <span>· HR System</span></figcaption></figure>
-      <figure class="shot"><button type="button"><img src="images/hr_4_attendance.png" alt="HR System ເວລາສະແກນ" loading="lazy" width="1280" height="760"></button>
-        <figcaption>ເວລາສະແກນ <span>· HR System</span></figcaption></figure>
-      <figure class="shot"><button type="button"><img src="images/fs_1_scan.jpg" alt="Face Scan ໜ້າສະແກນ" loading="lazy" width="1280" height="720"></button>
-        <figcaption>ໜ້າສະແກນໜ້າ <span>· Face Scan</span></figcaption></figure>
-      <figure class="shot"><button type="button"><img src="images/fs_2_mesh.jpg" alt="Face Scan ເສັ້ນຕາໜ່າງໃບໜ້າ" loading="lazy" width="1280" height="720"></button>
-        <figcaption>ເສັ້ນຕາໜ່າງໃບໜ້າ (Face Landmark) <span>· Face Scan</span></figcaption></figure>
     </div>
   </section>
 
-  <div class="lightbox" id="lightbox" role="dialog" aria-label="ຮູບຂະໜາດໃຫຍ່"><img alt=""></div>
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">ເປັນຫຍັງຕ້ອງ Seafog</div>
+        <h2>ອອກແບບມາສຳລັບການເຮັດວຽກໃນລາວ</h2>
+      </div>
+      <div class="feats">
+        <div class="feat"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16M4 12h16M4 19h10"/></svg></div>
+          <b>ໜ້າຈໍພາສາລາວທັງໝົດ</b><p>ເມນູ, ລາຍງານ ແລະ ສະລິບເງິນເດືອນ ເປັນພາສາລາວ ພະນັກງານໃຊ້ງານງ່າຍ</p></div>
+        <div class="feat"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h5"/></svg></div>
+          <b>ອາກອນ ແລະ ປະກັນສັງຄົມ</b><p>ຄິດໄລ່ຕາມອັດຕາຂອງລາວ ແລະ ປັບອັດຕາເອງໄດ້ ເມື່ອລະບຽບປ່ຽນ</p></div>
+        <div class="feat"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></div>
+          <b>ຂໍ້ມູນຢູ່ກັບທ່ານ</b><p>ເກັບໃນເຄື່ອງເຊີບເວີຂອງບໍລິສັດ ບໍ່ໄດ້ຢູ່ເທິງອິນເຕີເນັດ ພ້ອມສຳຮອງ / ກູ້ຄືນ</p></div>
+        <div class="feat"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3"/><circle cx="12" cy="11" r="3"/><path d="M8 17c1-2 2.5-3 4-3s3 1 4 3"/></svg></div>
+          <b>ສະແກນໜ້າ ບໍ່ຕ້ອງຊື້ເຄື່ອງ</b><p>ໃຊ້ຄອມພິວເຕີ ແລະ ກ້ອງທີ່ມີ ກັນຮູບຖ່າຍປອມ ບໍ່ຕ້ອງສຳຜັດເຄື່ອງ</p></div>
+        <div class="feat"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.3-5.7"/><path d="M20 4v5h-5"/></svg></div>
+          <b>ອັບເດດອັດຕະໂນມັດ</b><p>ມີເວີຊັນໃໝ່ ໂປຣແກຣມແຈ້ງ ແລະ ອັບເດດໃຫ້ເອງ ທຸກເຄື່ອງ</p></div>
+        <div class="feat"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.9A8 8 0 1 1 21 12z"/></svg></div>
+          <b>ຊ່ວຍເຫຼືອເປັນພາສາລາວ</b><p>ສອບຖາມ, ຂໍຕໍ່ທົດລອງ ແລະ ສັ່ງຊື້ ທາງ Telegram ຫຼື WhatsApp</p></div>
+      </div>
+    </div>
+  </section>
 
-  <footer>
-    ຕິດຕໍ່ຊື້ / ສອບຖາມ: <a href="https://t.me/S_pern" rel="noopener">Telegram @S_pern</a>
-  </footer>
-</div>
+  <section class="sec alt" id="products">
+    <div class="wrap">
+      <div class="sec-head" id="download">
+        <div class="eyebrow">ໂປຣແກຣມ ແລະ ດາວໂຫຼດ</div>
+        <h2>ເລືອກໃຊ້ຕາມຄວາມຕ້ອງການ</h2>
+        <p class="sub">ດາວໂຫຼດຟຣີ ທົດລອງໃຊ້ໄດ້ທັນທີ 30 ວັນ (ບໍ່ເກີນ 20 ຄົນ)</p>
+      </div>
+      <div class="grid2">
+        <section class="card" data-repo="pernscmt/seafog-hrsystem-lao">
+          <h3>HR System <span class="ver"></span></h3>
+          <p>ລະບົບບໍລິຫານບຸກຄະລາກອນ ແລະ ເງິນເດືອນ ໃຊ້ໄດ້ຫຼາຍເຄື່ອງໃນວົງ LAN</p>
+          <ul class="list">
+            <li>ຂໍ້ມູນພະນັກງານ, ສັນຍາ, ຕຳແໜ່ງ, ສາຂາ</li>
+            <li>ດຶງເວລາຈາກເຄື່ອງສະແກນ ຫຼື ໄຟລ໌ Excel</li>
+            <li>ລາພັກ, ໂອທີ, ຄຳຮ້ອງ — ອະນຸມັດເປັນຂັ້ນ</li>
+            <li>ຄິດໄລ່ເງິນເດືອນ ອາກອນ ປະກັນສັງຄົມ ສະລິບ</li>
+            <li>ປະເມີນຜົນ, ສັນຫາ, ຝຶກອົບຮົມ, ລາຍງານ A4</li>
+          </ul>
+          <a class="dl primary" data-asset="HRSystem_Server_Setup_" href="https://github.com/pernscmt/seafog-hrsystem-lao/releases/latest">
+            <span><b>ເຄື່ອງເຊີບເວີ</b><small>ຕິດຕັ້ງເຄື່ອງດຽວ ພ້ອມຖານຂໍ້ມູນ</small></span>
+            <span class="size">~450 MB</span>
+          </a>
+          <a class="dl" data-asset="HRSystem_Setup_" href="https://github.com/pernscmt/seafog-hrsystem-lao/releases/latest">
+            <span><b>ເຄື່ອງລູກ</b><small>ຕິດຕັ້ງທຸກເຄື່ອງທີ່ໃຊ້ງານ</small></span>
+            <span class="size">~43 MB</span>
+          </a>
+        </section>
+
+        <section class="card" data-repo="pernscmt/seafog-facescan-lao">
+          <h3>Face Scan <span class="ver"></span></h3>
+          <p>ເຄື່ອງສະແກນໜ້າລົງເວລາ ໃຊ້ຄູ່ກັບ HR System ຫຼື ໃຊ້ຢ່າງດຽວກໍໄດ້</p>
+          <ul class="list">
+            <li>ຈື່ໜ້າອັດຕະໂນມັດ ດ້ວຍກ້ອງ USB ຫຼື ກ້ອງ IP</li>
+            <li>ກັນຮູບຖ່າຍ / ໜ້າຈໍປອມ, ເກັບຮູບຫຼັກຖານ</li>
+            <li>ອ່ານຊື່ດ້ວຍສຽງ, ເລືອກປະເພດສະແກນຕາມກະ</li>
+            <li>ໃຊ້ໄດ້ເຖິງເນັດຫຼຸດ ສົ່ງເວລາຍ້ອນຫຼັງໃຫ້ເອງ</li>
+            <li>ສົ່ງເວລາໃຫ້ HR System ຫຼື ລະບົບອື່ນ (Excel/CSV)</li>
+          </ul>
+          <a class="dl primary" data-asset="FaceScan_Server_Setup_" href="https://github.com/pernscmt/seafog-facescan-lao/releases/latest">
+            <span><b>ເຄື່ອງສະແກນໃໝ່</b><small>ຕິດຕັ້ງພ້ອມຖານຂໍ້ມູນ</small></span>
+            <span class="size">~540 MB</span>
+          </a>
+          <a class="dl" data-asset="FaceScan_Setup_" href="https://github.com/pernscmt/seafog-facescan-lao/releases/latest">
+            <span><b>ໂປຣແກຣມຢ່າງດຽວ</b><small>ເຄື່ອງທີ່ມີຖານຂໍ້ມູນແລ້ວ</small></span>
+            <span class="size">~130 MB</span>
+          </a>
+        </section>
+      </div>
+      <p class="req">ຕ້ອງການ: Windows 10 / 11 (64-bit) · ເຄື່ອງເຊີບເວີ 1 ເຄື່ອງ ເປີດໄວ້ຕອນໃຊ້ງານ · ເຄື່ອງລູກບໍ່ຈຳກັດຈຳນວນ</p>
+    </div>
+  </section>
+
+  <section class="sec" id="pricing">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">ລາຄາ</div>
+        <h2>ລາຄາຊັດເຈນ ຄິດຕາມຈຳນວນພະນັກງານ</h2>
+        <p class="sub">ລາຄາເປັນກີບ · ຈ່າຍລາຍເດືອນ ຫຼື ລາຍປີ</p>
+      </div>
+      <p class="promo">🎉 ລູກຄ້າກຸ່ມທຳອິດ ມີສ່ວນຫຼຸດພິເສດປີທຳອິດ — ສອບຖາມທາງ Telegram ຫຼື WhatsApp</p>
+      <div class="controls">
+        <div class="seg" id="product" role="group" aria-label="ເລືອກໂປຣແກຣມ">
+          <button type="button" data-v="hr" aria-pressed="true">HR System</button>
+          <button type="button" data-v="fs" aria-pressed="false">Face Scan</button>
+          <button type="button" data-v="set" aria-pressed="false">ຊຸດຄູ່ HR + Face Scan</button>
+        </div>
+        <div class="seg" id="period" role="group" aria-label="ເລືອກໄລຍະ">
+          <button type="button" data-v="m" aria-pressed="false">ລາຍເດືອນ</button>
+          <button type="button" data-v="y" aria-pressed="true">ລາຍປີ<span class="tag">ຟຣີ 2 ເດືອນ</span></button>
+        </div>
+      </div>
+      <div class="plans" id="plans"></div>
+      <ul class="terms">
+        <li>ທົດລອງໃຊ້ຟຣີ 30 ວັນ (ບໍ່ເກີນ 20 ຄົນ) ບໍ່ຕ້ອງສະໝັກ</li>
+        <li>Face Scan ໃຊ້ຢ່າງດຽວໄດ້ (ນຳເຂົ້າພະນັກງານຈາກ Excel, ສົ່ງເວລາອອກເປັນ Excel/CSV ຫຼື ເຂົ້າລະບົບອື່ນ) · ນັບຕາມຈຳນວນຄົນທີ່ລົງທະບຽນໜ້າ · ໃຊ້ກ້ອງ USB ທົ່ວໄປໄດ້</li>
+        <li>ຊຸດຄູ່ ຖືກກວ່າຊື້ແຍກປະມານ 15%</li>
+        <li>ພະນັກງານເກີນ 200 ຄົນ ກະລຸນາຕິດຕໍ່ສອບຖາມ</li>
+      </ul>
+      <div class="install">
+        <h3>ຄ່າຕິດຕັ້ງ (ຄັ້ງດຽວ · ບໍ່ບັງຄັບ)</h3>
+        <div class="rows">
+          <div class="row"><b>ຟຣີ</b><span>ຕິດຕັ້ງເອງຕາມຄູ່ມື</span></div>
+          <div class="row"><b>500,000 ກີບ</b><span>ຕິດຕັ້ງໃຫ້ທາງໄກ (AnyDesk) + ຊ່ວຍນຳເຂົ້າລາຍຊື່ພະນັກງານ</span></div>
+          <div class="row"><b>1,500,000 ກີບ</b><span>ໄປຕິດຕັ້ງທີ່ຮ້ານ + ເຊື່ອມເຄື່ອງສະແກນ + ສອນໃຊ້ງານ 1 ວັນ</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec alt" id="shots">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">ຕົວຢ່າງໜ້າຈໍ</div>
+        <h2>ເບິ່ງໜ້າຕາໂປຣແກຣມຈິງ</h2>
+        <p class="sub">ຂໍ້ມູນໃນຮູບເປັນຂໍ້ມູນສົມມຸດ · ກົດຮູບເພື່ອເບິ່ງຂະໜາດໃຫຍ່</p>
+      </div>
+      <div class="gallery">
+        <figure class="shot"><button type="button"><img src="images/hr_1_dashboard.png" alt="HR System ໜ້າຫຼັກ" loading="lazy" width="1280" height="760"></button>
+          <figcaption>ໜ້າຫຼັກ <span>· HR System</span></figcaption></figure>
+        <figure class="shot"><button type="button"><img src="images/hr_2_employees.png" alt="HR System ລາຍຊື່ພະນັກງານ" loading="lazy" width="1280" height="760"></button>
+          <figcaption>ລາຍຊື່ພະນັກງານ <span>· HR System</span></figcaption></figure>
+        <figure class="shot"><button type="button"><img src="images/hr_5_employee_form.png" alt="HR System ຂໍ້ມູນພະນັກງານ" loading="lazy" width="1280" height="760"></button>
+          <figcaption>ຂໍ້ມູນພະນັກງານ <span>· HR System</span></figcaption></figure>
+        <figure class="shot"><button type="button"><img src="images/hr_3_payroll.png" alt="HR System ຄິດໄລ່ເງິນເດືອນ" loading="lazy" width="1280" height="760"></button>
+          <figcaption>ຄິດໄລ່ເງິນເດືອນ <span>· HR System</span></figcaption></figure>
+        <figure class="shot"><button type="button"><img src="images/hr_4_attendance.png" alt="HR System ເວລາສະແກນ" loading="lazy" width="1280" height="760"></button>
+          <figcaption>ເວລາສະແກນ <span>· HR System</span></figcaption></figure>
+        <figure class="shot"><button type="button"><img src="images/fs_1_scan.jpg" alt="Face Scan ໜ້າສະແກນ" loading="lazy" width="1280" height="720"></button>
+          <figcaption>ໜ້າສະແກນໜ້າ <span>· Face Scan</span></figcaption></figure>
+        <figure class="shot"><button type="button"><img src="images/fs_2_mesh.jpg" alt="Face Scan ເສັ້ນຕາໜ່າງໃບໜ້າ" loading="lazy" width="1280" height="720"></button>
+          <figcaption>ເສັ້ນຕາໜ່າງໃບໜ້າ (Face Landmark) <span>· Face Scan</span></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">ເລີ່ມໃຊ້ງານ</div>
+        <h2>ຕິດຕັ້ງງ່າຍ 4 ຂັ້ນຕອນ</h2>
+      </div>
+      <ol class="steps">
+        <li>ຕິດຕັ້ງ <b>HR System ເຄື່ອງເຊີບເວີ</b> ກ່ອນ (ເຄື່ອງດຽວ, ໃຊ້ສິດ admin)</li>
+        <li>ຕິດຕັ້ງ <b>ເຄື່ອງລູກ</b> ທຸກເຄື່ອງ ແລ້ວນຳເຂົ້າໄຟລ໌ການເຊື່ອມຕໍ່ຈາກເຊີບເວີ</li>
+        <li>ຖ້າໃຊ້ສະແກນໜ້າ: ຕິດຕັ້ງ <b>Face Scan ເຄື່ອງສະແກນໃໝ່</b> ທີ່ເຄື່ອງສະແກນ</li>
+        <li>ໃຊ້ງານໄດ້ທັນທີ — ໂປຣແກຣມອັບເດດເອງເມື່ອມີເວີຊັນໃໝ່</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec alt" id="faq">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">ຄຳຖາມທີ່ພົບເລື້ອຍ</div>
+        <h2>ມີຄຳຖາມ?</h2>
+      </div>
+      <div class="faq">
+        <details><summary>ຂໍ້ມູນຂອງບໍລິສັດເກັບໄວ້ໃສ?</summary>
+          <p>ເກັບໃນເຄື່ອງເຊີບເວີຂອງທ່ານເອງ (ຖານຂໍ້ມູນ PostgreSQL) ບໍ່ໄດ້ສົ່ງຂຶ້ນອິນເຕີເນັດ ແລະ ສຳຮອງ / ກູ້ຄືນໄດ້ຈາກໃນໂປຣແກຣມ</p></details>
+        <details><summary>ໃຊ້ໄດ້ຈັກເຄື່ອງ?</summary>
+          <p>ເຄື່ອງລູກບໍ່ຈຳກັດຈຳນວນ ທຸກເຄື່ອງທີ່ຢູ່ໃນວົງ LAN ດຽວກັບເຄື່ອງເຊີບເວີ ໃບອະນຸຍາດຄິດຕາມຈຳນວນພະນັກງານ ບໍ່ແມ່ນຈຳນວນເຄື່ອງ</p></details>
+        <details><summary>ໝົດທົດລອງແລ້ວ ຂໍ້ມູນຈະຫາຍບໍ?</summary>
+          <p>ບໍ່ຫາຍ ໂປຣແກຣມຈະເປັນໂໝດເບິ່ງຢ່າງດຽວ (ເບິ່ງ / ພິມ / ສຳຮອງໄດ້) ຈົນກວ່າຈະນຳເຂົ້າໃບອະນຸຍາດ ແລ້ວໃຊ້ຕໍ່ໄດ້ທັນທີ</p></details>
+        <details><summary>ຕ້ອງມີອິນເຕີເນັດບໍ?</summary>
+          <p>ໃຊ້ງານປະຈຳວັນໃນວົງ LAN ໄດ້ໂດຍບໍ່ຕ້ອງມີອິນເຕີເນັດ ອິນເຕີເນັດໃຊ້ສຳລັບອັບເດດໂປຣແກຣມເທົ່ານັ້ນ</p></details>
+        <details><summary>Face Scan ໃຊ້ໂດຍບໍ່ມີ HR System ໄດ້ບໍ?</summary>
+          <p>ໄດ້ ນຳເຂົ້າລາຍຊື່ພະນັກງານຈາກ Excel ເບິ່ງລາຍງານໃນໂປຣແກຣມ ແລະ ສົ່ງເວລາສະແກນອອກເປັນ Excel/CSV ຫຼື ສົ່ງເຂົ້າລະບົບເງິນເດືອນອື່ນ</p></details>
+        <details><summary>ສັ່ງຊື້ ແລະ ຈ່າຍເງິນແນວໃດ?</summary>
+          <p>ສົ່ງ ລະຫັດເຊີບເວີ (ໜ້າ ໃບອະນຸຍາດ ໃນໂປຣແກຣມ) ພ້ອມຊື່ບໍລິສັດ ແລະ ແພັກເກດ ທາງ Telegram ຫຼື WhatsApp ໂອນເງິນ ແລ້ວຈະໄດ້ຮັບໄຟລ໌ໃບອະນຸຍາດທາງແຊັດ</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="contact" id="contact">
+        <div>
+          <div class="eyebrow">ຕິດຕໍ່</div>
+          <h2>ສອບຖາມ ຫຼື ສັ່ງຊື້</h2>
+          <p class="sub">ຍິນດີໃຫ້ຄຳປຶກສາ ຊ່ວຍຕິດຕັ້ງ ແລະ ສາທິດການໃຊ້ງານ — ຕອບເປັນພາສາລາວ</p>
+        </div>
+        <div class="ch">
+          <a href="https://t.me/S_pern" rel="noopener">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#229ED9"/><path d="M5.5 11.8l11.6-4.5c.5-.2 1 .1.8.9l-2 9.3c-.1.6-.5.8-1 .5l-2.9-2.1-1.4 1.3c-.2.2-.3.3-.6.3l.2-3 5.4-4.9c.2-.2 0-.3-.3-.1l-6.7 4.2-2.9-.9c-.6-.2-.6-.6.1-.9z" fill="#fff"/></svg>
+            <span><b>Telegram</b><small>@S_pern</small></span>
+          </a>
+          <a href="https://wa.me/8562055682333" rel="noopener">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#25D366"/><path d="M12 5.5a6.5 6.5 0 0 0-5.6 9.8L5.5 18.5l3.3-.9A6.5 6.5 0 1 0 12 5.5zm3.4 8.9c-.1.4-.8.8-1.2.8-.3 0-.7.1-2.3-.6-1.9-.8-3.1-2.8-3.2-2.9-.1-.1-.8-1-.8-1.9s.5-1.4.6-1.6c.2-.2.4-.2.5-.2h.4c.1 0 .3 0 .4.3l.6 1.4c0 .1.1.2 0 .4l-.3.4-.3.3c-.1.1-.2.2-.1.4.1.2.6 1 1.3 1.6.9.8 1.6 1 1.8 1.1.2.1.3.1.4-.1l.6-.7c.1-.2.3-.2.4-.1l1.3.6c.2.1.3.2.4.2 0 .1 0 .4-.1.8z" fill="#fff"/></svg>
+            <span><b>WhatsApp / ໂທ</b><small>+856 20 5568 2333</small></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-label="ຮູບຂະໜາດໃຫຍ່"><img alt=""></div>
+
+<footer>
+  <div class="wrap">
+    <a class="logo" href="#top"><svg><use href="#logo"/></svg><b>Seafog <span>Software</span></b></a>
+    <span>Seafog — ທະເລໝອກຍາມເຊົ້າ · © 2026 Seafog Software · ຊອບແວບໍລິຫານງານບຸກຄົນ ສຳລັບທຸລະກິດລາວ</span>
+  </div>
+</footer>
 
 <script>
   // ใส่ลิงก์ไฟล์ + ขนาด + เลขเวอร์ชันจาก Release ล่าสุดของแต่ละ repo (อ่านไม่ได้ = คงลิงก์หน้า Release ล่าสุด)
@@ -246,32 +514,28 @@
     fs:  [["S", 20, 80000, 800000], ["M", 50, 150000, 1500000], ["L", 100, 250000, 2500000], ["XL", 200, 400000, 4000000]],
     set: [["S", 20, 195000, 1950000], ["M", 50, 380000, 3800000], ["L", 100, 640000, 6400000], ["XL", 200, 1020000, 10200000]]
   };
+  var POPULAR = "M";
   var sel = { product: "hr", period: "y" };
   function kip(n) { return n.toLocaleString("en-US"); }
   function renderPlans() {
     var yearly = sel.period === "y";
     var col = yearly ? 3 : 2;
-    var html = PRICES[sel.product].map(function (p, i) {
-      var was = "";
-      if (sel.product === "set") {
-        var sum = PRICES.hr[i][col] + PRICES.fs[i][col];
-        was = "ຊື້ແຍກ " + kip(sum);
-      }
-      return '<div class="plan"><div class="name">' + p[0] + '</div>' +
+    document.getElementById("plans").innerHTML = PRICES[sel.product].map(function (p, i) {
+      var was = sel.product === "set" ? "ຊື້ແຍກ " + kip(PRICES.hr[i][col] + PRICES.fs[i][col]) : "";
+      var hot = p[0] === POPULAR;
+      return '<div class="plan' + (hot ? ' hot' : '') + '">' + (hot ? '<span class="pop">ນິຍົມ</span>' : '') +
+        '<div class="name">' + p[0] + '</div>' +
         '<div class="who">ບໍ່ເກີນ ' + p[1] + ' ຄົນ</div>' +
         '<div class="price">' + kip(p[col]) + ' <small>ກີບ/' + (yearly ? "ປີ" : "ເດືອນ") + '</small></div>' +
         '<div class="was">' + was + '</div></div>';
     }).join("");
-    document.getElementById("plans").innerHTML = html;
   }
   ["product", "period"].forEach(function (key) {
     var group = document.getElementById(key);
     group.querySelectorAll("button").forEach(function (b) {
       b.addEventListener("click", function () {
         sel[key] = b.dataset.v;
-        group.querySelectorAll("button").forEach(function (x) {
-          x.setAttribute("aria-pressed", String(x === b));
-        });
+        group.querySelectorAll("button").forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); });
         renderPlans();
       });
     });
